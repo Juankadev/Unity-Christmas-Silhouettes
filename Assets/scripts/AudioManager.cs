@@ -16,16 +16,16 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        print("awake audio");
+        //print("awake audio");
         if (instance != null && instance != this)
         {
             Destroy(this);
-            print("destroy this");
+            //print("destroy this");
         }
 
         else
         {
-            print("destroy else");
+            //print("destroy else");
             instance = this;
             DontDestroyOnLoad(this);
         }

@@ -7,16 +7,16 @@ using UnityEngine.UI;
 
 public class manager : MonoBehaviour
 {
-    public GameObject item1,item1black,item2,item2black,item3,item3black,inventario;
-    private GameObject menu, n1,n2,n3,n4,n5,n6,n7;
-    Vector2 item1initial,item2initial,item3initial;
-    Vector2 item1initialscale,item2initialscale,item3initialscale;
-    AudioSource src;
-    public AudioClip winClip;
-    float distancia,tiempo;
-    bool item1correct,item2correct,item3correct,gano,cambianivel;
-    int count;
-    public TextMeshProUGUI txtlevel;
+    //public GameObject item1,item1black,item2,item2black,item3,item3black,inventario;
+    //private GameObject menu, n1,n2,n3,n4,n5,n6,n7;
+    //Vector2 item1initial,item2initial,item3initial;
+    //Vector2 item1initialscale,item2initialscale,item3initialscale;
+    //AudioSource src;
+    //public AudioClip winClip;
+    //float distancia,tiempo;
+    //bool item1correct,item2correct,item3correct,gano,cambianivel;
+    //int count;
+    //public TextMeshProUGUI txtlevel;
 
 
 
@@ -30,10 +30,10 @@ public class manager : MonoBehaviour
     //    item3.transform.localScale = item3initialscale;
     //}
 
-    void Start()
-    {   
-        //menu = GameObject.Find("Menu");
-        txtlevel.text="";
+    //void Start()
+    //{   
+    //    //menu = GameObject.Find("Menu");
+    //    txtlevel.text="";
         //n1 = GameObject.Find("Nivel1");
         //n2 = GameObject.Find("Nivel2");
         //n3 = GameObject.Find("Nivel3");
@@ -50,41 +50,41 @@ public class manager : MonoBehaviour
         //item2initialscale = item2.transform.localScale;
         //item3initialscale = item3.transform.localScale;
 
-        src = GetComponent<AudioSource>();
-        distancia=200;
-        tiempo = 0.0f;
-        gano=false;
-    }
+    //    src = GetComponent<AudioSource>();
+    //    distancia=200;
+    //    tiempo = 0.0f;
+    //    gano=false;
+    //}
 
-    void Update()
-    {
-        txtlevel.text="Nivel: "+ LevelManager.levelcount;
+    //void Update()
+    //{
+        //txtlevel.text="Nivel: "+ LevelManager.levelcount;
 
-        if (item1correct && item2correct && item3correct)
-        {
-            src.PlayOneShot(winClip,1);
-            item1correct=false;
-            item2correct=false;
-            item3correct=false;
-            gano=true;
-            cambianivel=true;
-            inventario.SetActive(false);
-            LevelManager.instance.NextScene();
-        }
+        //if (item1correct && item2correct && item3correct)
+        //{
+        //    src.PlayOneShot(winClip,1);
+        //    item1correct=false;
+        //    item2correct=false;
+        //    item3correct=false;
+        //    gano=true;
+        //    cambianivel=true;
+        //    inventario.SetActive(false);
+        //    LevelManager.instance.NextScene();
+        //}
 
-        if(gano){
-            tiempo += Time.deltaTime;
-            if(tiempo >= 5 && cambianivel==true)
-            {
+    //    if(gano){
+    //        tiempo += Time.deltaTime;
+    //        if(tiempo >= 5 && cambianivel==true)
+    //        {
                 
-                inventario.SetActive(true);
-                LevelManager.instance.NextScene();                
-                cambianivel=false;
-                gano=false;
-                tiempo=0;
-            }
-        }
-    }
+    //            inventario.SetActive(true);
+    //            LevelManager.instance.NextScene();                
+    //            cambianivel=false;
+    //            gano=false;
+    //            tiempo=0;
+    //        }
+    //    }
+    //}
 
 
 

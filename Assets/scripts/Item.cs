@@ -9,34 +9,55 @@ public class Item : MonoBehaviour, IDragHandler,IEndDragHandler,IBeginDragHandle
     Vector3 posinicial;
     [SerializeField] float distanciaCorrecta;
     [SerializeField] GameObject ItemCorrecto;
-
+    bool drag;
     void Start()
     {
+        drag = true;
         posinicial = transform.position;
         distanciaCorrecta = 150;
     }
     public void OnDrag(PointerEventData eventData)
     {
-        this.transform.position = Input.mousePosition;
+        if(drag)
+            this.transform.position = Input.mousePosition;
     }
-    public void OnEndDrag(PointerEventData eventData)
+
+    private bool CalculateDistance()
     {
         float distance = Vector3.Distance(this.transform.position, ItemCorrecto.transform.position);
         if (distance <= distanciaCorrecta)
         {
-            this.transform.position = ItemCorrecto.transform.position;
-            this.transform.localScale = ItemCorrecto.transform.localScale;
-            AudioManager.instance.PlaySound(AudioManager.instance.sfxCorrect);
-            GameManager.instance.Correcto();
+            drag = false;
+            return true;
         }
-        else
+        return false;
+    }
+    private void CorrectItem()
+    {
+        this.transform.position = ItemCorrecto.transform.position;
+        this.transform.localScale = ItemCorrecto.transform.localScale;
+    }
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        if (drag)
         {
-            this.transform.position = posinicial;
+            if (CalculateDistance())
+            {
+
+                CorrectItem();
+                AudioManager.instance.PlaySound(AudioManager.instance.sfxCorrect);
+                GameManager.instance.Correcto();
+            }
+            else
+            {
+                this.transform.position = posinicial;
+            }
         }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
-    {
-        AudioManager.instance.PlaySound(AudioManager.instance.sfxDrag);
+    {   
+        if (drag)
+            AudioManager.instance.PlaySound(AudioManager.instance.sfxDrag);
     }
 }
